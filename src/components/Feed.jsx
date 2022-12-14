@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { feedQuery, searchQuery } from '../utils/data';
 import { client } from '../client';
-import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
+import Pin from './Pin';
 const Feed = () => {
   const [loading , setLoading]= useState(false);
   const [pins , setPins]= useState(null);
@@ -32,8 +32,8 @@ const Feed = () => {
 
   if(!pins?.length) return <h2>No Pins Available</h2>
   return (
-    <div>
-      {pins && <MasonryLayout pins={pins}/>}
+    <div class="grid grid-cols-4 gap-4">
+      {pins && pins?.map((pin) => <Pin key={pin._id} pin={pin} className="w-max"/>)}
     </div>
   )
 }
