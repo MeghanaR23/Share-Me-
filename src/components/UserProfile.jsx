@@ -12,7 +12,7 @@ const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 o
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
 
 
-const randomImage= 'https://source.unsplash.com/1600x900?animals,nature,photography,technology'
+const randomImage= 'https://source.unsplash.com/1600x900?animals,mountains,photography,technology'
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
