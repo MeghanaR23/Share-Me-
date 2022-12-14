@@ -59,10 +59,10 @@ const CreatePin = ({user}) => {
         },
         category,
       };
-
       client.create(doc)
        .then(() =>{
-        navigate =('/');
+        alert('pin saved');
+        window.location.href = "/";
        });
     }else{
       setFields(true);
