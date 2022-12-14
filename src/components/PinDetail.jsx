@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { Link, useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
+import noImage from "../assets/no_image.png";
 
 import { client, urlFor } from '../client';
 import MasonryLayout from './MasonryLayout';
@@ -69,8 +70,8 @@ const PinDetail = ( { user }) => {
     <div className="flex xl-flex-row flex-col m-auto bg-white" style={{ maxWidth:'1500px', borderRadius:'32px'}}>
       <div className="flex justify-center items-center md:items-start flex-initial">
         <img 
-        src={pinDetail?.image && urlFor(pinDetail.image).url()}
-        className="rounded-t-3xl rounded-b-lg"
+        src={pinDetail.image ? urlFor(pinDetail.image).url(): noImage }
+        className= {pinDetail.image ? "rounded-t-3xl rounded-b-lg" : "w-2/5"}
         alt = "user-post"/>
       </div>
       <div className="w-full p-5 flex-1 xl:min-w-620">
@@ -101,7 +102,7 @@ const PinDetail = ( { user }) => {
           <h2 className="mt-5 text-2xl">Comments</h2>
           <div className="max-h-370 overflow-y-auto">
             {pinDetail?.comments?.map((comment , i) => (
-                <div className="flex gap-2 mt-5 items-center bg-white rounded-lg">
+                <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={i}>
                   <img
                     src={comment.postedBy?.image}
                     className="w-10 h-10 rounded-full cursor-pointer"
@@ -149,7 +150,7 @@ const PinDetail = ( { user }) => {
     <MasonryLayout pins = {pins} />
     </>
   ):(
-    <Spinner message ="Loading More Pins.."/>
+    <h3 className='text-center'>No More Pins to show.</h3>
   )}
   </>
   )
